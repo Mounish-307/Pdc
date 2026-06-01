@@ -87,7 +87,7 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
-        /* Placeholder for Product Image */
+        /* Product Image Styling */
         .product-image {
             width: 100%;
             height: 250px;
@@ -100,6 +100,12 @@
             overflow: hidden;
         }
 
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         /* Subtle stripe detail inside image box */
         .product-image::after {
             content: '';
@@ -109,14 +115,6 @@
             width: 100%;
             height: 6px;
             background: linear-gradient(to right, var(--navy) 50%, var(--red) 50%);
-        }
-
-        .product-image span {
-            color: #888;
-            font-weight: bold;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .product-name {
@@ -181,7 +179,7 @@
             
             <div class="product-card" data-name="Iconic Oxford Shirt">
                 <div class="product-image">
-                    <span>[ Premium Oxford Shirt ]</span>
+                    <img src="http://googleusercontent.com/image_collection/image_retrieval/12778661526679384809_0" alt="Iconic Oxford Shirt">
                 </div>
                 <div class="product-category">Men's Apparel</div>
                 <div class="product-name">Iconic Oxford Shirt</div>
@@ -190,7 +188,7 @@
 
             <div class="product-card" data-name="Classic Fit Polo">
                 <div class="product-image">
-                    <span>[ Signature Polo ]</span>
+                    <img src="http://googleusercontent.com/image_collection/image_retrieval/12778661526679384809_1" alt="Classic Fit Polo">
                 </div>
                 <div class="product-category">Men's Apparel</div>
                 <div class="product-name">Classic Fit Polo</div>
@@ -199,7 +197,7 @@
 
             <div class="product-card" data-name="Varsity Bomber Jacket">
                 <div class="product-image">
-                    <span>[ Crew Bomber Jacket ]</span>
+                    <img src="http://googleusercontent.com/image_collection/image_retrieval/12778661526679384809_2" alt="Varsity Bomber Jacket">
                 </div>
                 <div class="product-category">Outerwear</div>
                 <div class="product-name">Varsity Bomber Jacket</div>
@@ -208,7 +206,7 @@
 
             <div class="product-card" data-name="Heritage Chino Shorts">
                 <div class="product-image">
-                    <span>[ Tailored Chinos ]</span>
+                    <img src="http://googleusercontent.com/image_collection/image_retrieval/12778661526679384809_3" alt="Heritage Chino Shorts">
                 </div>
                 <div class="product-category">Collections</div>
                 <div class="product-name">Heritage Chino Shorts</div>
