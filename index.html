@@ -3,243 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classic Apparel Co. | Heritage Collection</title>
+    <title>Explore the World</title>
     <style>
-        /* --- CSS STYLING --- */
-        
+        /* CSS STYLING */
         :root {
-            --navy: #00174f;
-            --red: #cc0c2f;
-            --white: #ffffff;
-            --gray: #f5f5f5;
-            --text-dark: #333333;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --accent-color: #2ec4b6;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        /* Dark Mode Variables */
+        [data-theme="dark"] {
+            --bg-color: #1e1e24;
+            --text-color: #f4f7f6;
+            --card-bg: #2a2a35;
+            --accent-color: #ff9f1c;
         }
 
         body {
-            background-color: var(--white);
-            color: var(--text-dark);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        /* Header & Brand Flag Design */
         header {
-            background-color: var(--navy);
+            background-color: var(--card-bg);
             padding: 20px;
-            text-align: center;
-            position: relative;
-        }
-
-        .brand-logo {
-            display: inline-block;
-        }
-
-        /* Tommy-inspired Flag */
-        .flag {
-            width: 80px;
-            height: 40px;
-            margin: 0 auto 10px auto;
             display: flex;
-            border: 2px solid var(--white);
-        }
-        .flag-left { width: 50%; background-color: var(--white); }
-        .flag-right { width: 50%; background-color: var(--red); }
-
-        header h1 {
-            color: var(--white);
-            font-size: 24px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-
-        /* Product Grid Container */
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        /* Product Card */
-        .product-card {
-            background: var(--white);
-            border: 1px solid #e0e0e0;
-            border-top: 4px solid var(--navy);
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        /* Product Image Styling */
-        .product-image {
-            width: 100%;
-            height: 250px;
-            background-color: var(--gray);
-            margin-bottom: 15px;
-            display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        h1 {
+            margin: 0;
+            font-size: 1.5rem;
         }
 
-        /* Subtle stripe detail inside image box */
-        .product-image::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 6px;
-            background: linear-gradient(to right, var(--navy) 50%, var(--red) 50%);
-        }
-
-        .product-name {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--navy);
-            margin-bottom: 8px;
-        }
-
-        .product-category {
-            font-size: 12px;
-            color: #777;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-        }
-
-        .product-price {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--red);
-        }
-
-        /* Custom Alert Notification Toast */
-        #toast {
-            position: fixed;
-            bottom: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--navy);
-            color: var(--white);
-            padding: 15px 30px;
-            border-radius: 4px;
-            border-bottom: 4px solid var(--red);
+        .toggle-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
             font-weight: bold;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: bottom 0.4s ease;
-            z-index: 1000;
-            text-align: center;
-            min-width: 300px;
+            transition: transform 0.2s;
         }
 
-        #toast.show {
-            bottom: 40px;
+        .toggle-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .gallery {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 300px;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background-color: #ddd; /* Fallback if connection is slow */
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            margin-top: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.9rem;
+            opacity: 0.8;
         }
     </style>
 </head>
 <body>
 
+    <!-- HTML STRUCTURE -->
     <header>
-        <div class="brand-logo">
-            <div class="flag">
-                <div class="flag-left"></div>
-                <div class="flag-right"></div>
-            </div>
-            <h1>THE HERITAGE CLUB</h1>
-        </div>
+        <h1>🌅 TravelJournal</h1>
+        <button class="toggle-btn" id="themeToggle">Switch Mode</button>
     </header>
 
-    <main class="container">
-        <div class="grid">
-            
-            <div class="product-card" data-name="Iconic Oxford Shirt">
-                <div class="product-image">
-                    <img src="http://googleusercontent.com/image_collection/image_retrieval/12778661526679384809_0" alt="Iconic Oxford Shirt">
-                </div>
-                <div class="product-category">Men's Apparel</div>
-                <div class="product-name">Iconic Oxford Shirt</div>
-                <div class="product-price">$89.50</div>
-            </div>
+    <section class="hero">
+        <h2>Find Your Next Adventure</h2>
+        <p>A simple showcase of beautiful destinations around the globe.</p>
+    </section>
 
-            <div class="product-card" data-name="Classic Fit Polo">
-                <div class="product-image">
-                    <img src="http://googleusercontent.com/image_collection/image_retrieval/12778661526679384809_1" alt="Classic Fit Polo">
-                </div>
-                <div class="product-category">Men's Apparel</div>
-                <div class="product-name">Classic Fit Polo</div>
-                <div class="product-price">$69.50</div>
+    <main class="gallery">
+        <!-- Card 1: Beach -->
+        <div class="card">
+            <img src="https://picsum.photos/id/124/500/350" alt="Beautiful coastal beach">
+            <div class="card-content">
+                <h3>The Tropics</h3>
+                <p>Sun, sand, and crystal clear waters. The perfect escape from the hustle and bustle.</p>
             </div>
+        </div>
 
-            <div class="product-card" data-name="Varsity Bomber Jacket">
-                <div class="product-image">
-                    <img src="http://googleusercontent.com/image_collection/image_retrieval/12778661526679384809_2" alt="Varsity Bomber Jacket">
-                </div>
-                <div class="product-category">Outerwear</div>
-                <div class="product-name">Varsity Bomber Jacket</div>
-                <div class="product-price">$179.00</div>
+        <!-- Card 2: Mountains -->
+        <div class="card">
+            <img src="https://picsum.photos/id/146/500/350" alt="Mountain peaks landscape">
+            <div class="card-content">
+                <h3>The Peaks</h3>
+                <p>Crisp mountain air and breathtaking views that reward the toughest climbs.</p>
             </div>
+        </div>
 
-            <div class="product-card" data-name="Heritage Chino Shorts">
-                <div class="product-image">
-                    <img src="http://googleusercontent.com/image_collection/image_retrieval/12778661526679384809_3" alt="Heritage Chino Shorts">
-                </div>
-                <div class="product-category">Collections</div>
-                <div class="product-name">Heritage Chino Shorts</div>
-                <div class="product-price">$59.50</div>
+        <!-- Card 3: Forest -->
+        <div class="card">
+            <img src="https://picsum.photos/id/116/500/350" alt="Deep green forest trail">
+            <div class="card-content">
+                <h3>The Woods</h3>
+                <p>Get lost in the silence of ancient forests and reconnect with Mother Nature.</p>
             </div>
-
         </div>
     </main>
 
-    <div id="toast">Product Clicked!</div>
+    <footer>
+        <p>© 2026 TravelJournal. Made with HTML, CSS, and JS.</p>
+    </footer>
 
+    <!-- JAVASCRIPT INTERACTIVITY -->
     <script>
-        // Select all product cards and the notification element
-        const productCards = document.querySelectorAll('.product-card');
-        const toast = document.getElementById('toast');
-
-        // Loop through each product card and add a click event listener
-        productCards.forEach(card => {
-            card.addEventListener('click', () => {
-                // Get the product name from the 'data-name' attribute
-                const productName = card.getAttribute('data-name');
-                
-                // Update toast text dynamically
-                toast.textContent = `"${productName}" is clicked!`;
-                
-                // Show the custom toast alert
-                toast.classList.add('show');
-                
-                // Hide the toast after 2.5 seconds
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 2500);
-            });
+        const toggleBtn = document.getElementById('themeToggle');
+        
+        toggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
         });
     </script>
 </body>
