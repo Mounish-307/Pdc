@@ -3,107 +3,246 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Landing Page</title>
-
+    <title>Classic Apparel Co. | Heritage Collection</title>
     <style>
+        /* --- CSS STYLING --- */
+        
+        :root {
+            --navy: #00174f;
+            --red: #cc0c2f;
+            --white: #ffffff;
+            --gray: #f5f5f5;
+            --text-dark: #333333;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
 
         body {
-            background: #f4f7fc;
-            color: #333;
+            background-color: var(--white);
+            color: var(--text-dark);
         }
 
+        /* Header & Brand Flag Design */
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 10%;
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #2563eb;
-        }
-
-        nav a {
-            margin-left: 20px;
-            text-decoration: none;
-            color: #333;
-        }
-
-        .hero {
-            height: 90vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+            background-color: var(--navy);
             padding: 20px;
+            text-align: center;
+            position: relative;
         }
 
-        .hero-content h1 {
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-
-        .hero-content p {
-            font-size: 1.1rem;
-            margin-bottom: 25px;
-            color: #666;
-        }
-
-        .btn {
+        .brand-logo {
             display: inline-block;
-            padding: 12px 25px;
-            background: #2563eb;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            transition: 0.3s;
         }
 
-        .btn:hover {
-            background: #1d4ed8;
+        /* Tommy-inspired Flag */
+        .flag {
+            width: 80px;
+            height: 40px;
+            margin: 0 auto 10px auto;
+            display: flex;
+            border: 2px solid var(--white);
+        }
+        .flag-left { width: 50%; background-color: var(--white); }
+        .flag-right { width: 50%; background-color: var(--red); }
+
+        header h1 {
+            color: var(--white);
+            font-size: 24px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 700;
         }
 
-        footer {
-            text-align: center;
+        /* Product Grid Container */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        /* Product Card */
+        .product-card {
+            background: var(--white);
+            border: 1px solid #e0e0e0;
+            border-top: 4px solid var(--navy);
             padding: 20px;
-            background: white;
-            border-top: 1px solid #ddd;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Placeholder for Product Image */
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background-color: var(--gray);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Subtle stripe detail inside image box */
+        .product-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(to right, var(--navy) 50%, var(--red) 50%);
+        }
+
+        .product-image span {
+            color: #888;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .product-category {
+            font-size: 12px;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--red);
+        }
+
+        /* Custom Alert Notification Toast */
+        #toast {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 15px 30px;
+            border-radius: 4px;
+            border-bottom: 4px solid var(--red);
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: bottom 0.4s ease;
+            z-index: 1000;
+            text-align: center;
+            min-width: 300px;
+        }
+
+        #toast.show {
+            bottom: 40px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">MyBrand</div>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">Features</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-        </nav>
+        <div class="brand-logo">
+            <div class="flag">
+                <div class="flag-left"></div>
+                <div class="flag-right"></div>
+            </div>
+            <h1>THE HERITAGE CLUB</h1>
+        </div>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Build Something Amazing</h1>
-            <p>Create beautiful websites faster with a modern and simple design.</p>
-            <a href="#" class="btn">Get Started</a>
+    <main class="container">
+        <div class="grid">
+            
+            <div class="product-card" data-name="Iconic Oxford Shirt">
+                <div class="product-image">
+                    <span>[ Premium Oxford Shirt ]</span>
+                </div>
+                <div class="product-category">Men's Apparel</div>
+                <div class="product-name">Iconic Oxford Shirt</div>
+                <div class="product-price">$89.50</div>
+            </div>
+
+            <div class="product-card" data-name="Classic Fit Polo">
+                <div class="product-image">
+                    <span>[ Signature Polo ]</span>
+                </div>
+                <div class="product-category">Men's Apparel</div>
+                <div class="product-name">Classic Fit Polo</div>
+                <div class="product-price">$69.50</div>
+            </div>
+
+            <div class="product-card" data-name="Varsity Bomber Jacket">
+                <div class="product-image">
+                    <span>[ Crew Bomber Jacket ]</span>
+                </div>
+                <div class="product-category">Outerwear</div>
+                <div class="product-name">Varsity Bomber Jacket</div>
+                <div class="product-price">$179.00</div>
+            </div>
+
+            <div class="product-card" data-name="Heritage Chino Shorts">
+                <div class="product-image">
+                    <span>[ Tailored Chinos ]</span>
+                </div>
+                <div class="product-category">Collections</div>
+                <div class="product-name">Heritage Chino Shorts</div>
+                <div class="product-price">$59.50</div>
+            </div>
+
         </div>
-    </section>
+    </main>
 
-    <footer>
-        <p>&copy; 2026 MyBrand. All rights reserved.</p>
-    </footer>
+    <div id="toast">Product Clicked!</div>
 
+    <script>
+        // Select all product cards and the notification element
+        const productCards = document.querySelectorAll('.product-card');
+        const toast = document.getElementById('toast');
+
+        // Loop through each product card and add a click event listener
+        productCards.forEach(card => {
+            card.addEventListener('click', () => {
+                // Get the product name from the 'data-name' attribute
+                const productName = card.getAttribute('data-name');
+                
+                // Update toast text dynamically
+                toast.textContent = `"${productName}" is clicked!`;
+                
+                // Show the custom toast alert
+                toast.classList.add('show');
+                
+                // Hide the toast after 2.5 seconds
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 2500);
+            });
+        });
+    </script>
 </body>
 </html>
