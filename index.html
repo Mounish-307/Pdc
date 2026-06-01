@@ -3,172 +3,307 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore the World</title>
+    <title>Tommy Hilfiger Inspired Concept</title>
     <style>
-        /* CSS STYLING */
+        /* BRAND IDENTITY COLORS */
         :root {
-            --bg-color: #f4f7f6;
-            --text-color: #333;
-            --card-bg: #ffffff;
-            --accent-color: #2ec4b6;
-        }
-
-        /* Dark Mode Variables */
-        [data-theme="dark"] {
-            --bg-color: #1e1e24;
-            --text-color: #f4f7f6;
-            --card-bg: #2a2a35;
-            --accent-color: #ff9f1c;
+            --th-navy: #001c3d;
+            --th-red: #cc0c2f;
+            --th-white: #ffffff;
+            --th-gray: #f5f5f7;
+            --th-dark-gray: #222222;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            transition: background-color 0.3s, color 0.3s;
+            background-color: var(--th-white);
+            color: var(--th-dark-gray);
         }
 
+        /* FLAG LOGO CUSTOM COMPONENT */
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            font-weight: 900;
+            letter-spacing: 2px;
+            font-size: 1.2rem;
+            color: var(--th-navy);
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        .th-flag {
+            width: 24px;
+            height: 16px;
+            display: inline-flex;
+            flex-direction: column;
+            border: 1px solid var(--th-navy);
+            margin-right: 10px;
+        }
+        .th-flag-top {
+            height: 50%;
+            background: linear-gradient(90deg, var(--th-white) 50%, var(--th-navy) 50%);
+        }
+        .th-flag-bottom {
+            height: 50%;
+            background: linear-gradient(90deg, var(--th-white) 50%, var(--th-red) 50%);
+        }
+
+        /* NAVIGATION BAR */
         header {
-            background-color: var(--card-bg);
-            padding: 20px;
+            background-color: var(--th-white);
+            border-bottom: 4px solid var(--th-navy);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        h1 {
-            margin: 0;
-            font-size: 1.5rem;
-        }
-
-        .toggle-btn {
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
+        nav a {
+            text-decoration: none;
+            color: var(--th-navy);
             font-weight: bold;
-            transition: transform 0.2s;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            margin-left: 25px;
+            letter-spacing: 1px;
+            transition: color 0.2s;
         }
 
-        .toggle-btn:hover {
-            transform: scale(1.05);
+        nav a:hover {
+            color: var(--th-red);
         }
 
+        .cart-status {
+            background-color: var(--th-navy);
+            color: var(--th-white);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        /* HERO PROMOTION BANNER */
         .hero {
+            background-color: var(--th-gray);
             text-align: center;
-            padding: 60px 20px;
+            padding: 80px 20px;
+            border-bottom: 1px solid #e1e1e5;
         }
 
-        .gallery {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            padding: 20px;
+        .hero h2 {
+            font-size: 2.5rem;
+            color: var(--th-navy);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin: 0 0 15px 0;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            color: #555;
+        }
+
+        .th-btn {
+            background-color: var(--th-navy);
+            color: var(--th-white);
+            border: none;
+            padding: 12px 35px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .th-btn:hover {
+            background-color: var(--th-red);
+        }
+
+        /* PRODUCT GRID SECTION */
+        .container {
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 60px auto;
+            padding: 0 20px;
         }
 
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            width: 300px;
-            transition: transform 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            background-color: #ddd; /* Fallback if connection is slow */
-        }
-
-        .card-content {
-            padding: 20px;
-        }
-
-        .card-content h3 {
-            margin-top: 0;
-        }
-
-        footer {
+        .section-title {
             text-align: center;
-            padding: 40px;
-            font-size: 0.9rem;
-            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--th-navy);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--th-red);
+            margin: 10px auto 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        /* PRODUCT CARD */
+        .product-card {
+            background-color: var(--th-white);
+            border: 1px solid #eee;
+            text-align: center;
+            padding-bottom: 20px;
+            position: relative;
+            transition: box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 340px;
+            object-fit: cover;
+        }
+
+        .tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--th-red);
+            color: var(--th-white);
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .product-card h3 {
+            font-size: 1rem;
+            margin: 15px 0 5px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .price {
+            font-weight: bold;
+            color: var(--th-navy);
+            margin-bottom: 15px;
+        }
+
+        .buy-btn {
+            background-color: transparent;
+            border: 2px solid var(--th-navy);
+            color: var(--th-navy);
+            padding: 8px 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .buy-btn:hover {
+            background-color: var(--th-navy);
+            color: var(--th-white);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--th-navy);
+            color: var(--th-white);
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 100px;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
         }
     </style>
 </head>
 <body>
 
-    <!-- HTML STRUCTURE -->
+    <!-- TOP NAVIGATION -->
     <header>
-        <h1>🌅 TravelJournal</h1>
-        <button class="toggle-btn" id="themeToggle">Switch Mode</button>
+        <a href="#" class="brand-logo">
+            <div class="th-flag">
+                <div class="th-flag-top"></div>
+                <div class="th-flag-bottom"></div>
+            </div>
+            Tommy Concept
+        </a>
+        <nav>
+            <a href="#">New Arrivals</a>
+            <a href="#">Men</a>
+            <a href="#">Women</a>
+            <a href="#" class="cart-status">Bag (<span id="cart-count">0</span>)</a>
+        </nav>
     </header>
 
+    <!-- PROMO HERO HEADER -->
     <section class="hero">
-        <h2>Find Your Next Adventure</h2>
-        <p>A simple showcase of beautiful destinations around the globe.</p>
+        <h2>The Icons of Prep</h2>
+        <p>Classic American styling, redesigned for 2026. Discover sharp tailoring, signature stripes, and effortless wardrobe essentials.</p>
+        <button class="th-btn">Shop The Collection</button>
     </section>
 
-    <main class="gallery">
-        <!-- Card 1: Beach -->
-        <div class="card">
-            <img src="https://picsum.photos/id/124/500/350" alt="Beautiful coastal beach">
-            <div class="card-content">
-                <h3>The Tropics</h3>
-                <p>Sun, sand, and crystal clear waters. The perfect escape from the hustle and bustle.</p>
+    <!-- PRODUCT DISPLAY -->
+    <main class="container">
+        <h2 class="section-title">Featured Items</h2>
+        
+        <div class="grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <span class="tag">Essential</span>
+                <!-- High-quality direct fashion image placeholder -->
+                <img src="https://picsum.photos/id/222/600/800" alt="Classic Signature Polo">
+                <h3>Signature Oxford Polo</h3>
+                <div class="price">$89.50</div>
+                <button class="buy-btn" onclick="addToBag()">Add To Bag</button>
             </div>
-        </div>
 
-        <!-- Card 2: Mountains -->
-        <div class="card">
-            <img src="https://picsum.photos/id/146/500/350" alt="Mountain peaks landscape">
-            <div class="card-content">
-                <h3>The Peaks</h3>
-                <p>Crisp mountain air and breathtaking views that reward the toughest climbs.</p>
+            <!-- Product 2 -->
+            <div class="product-card">
+                <span class="tag">New</span>
+                <img src="https://picsum.photos/id/64/600/800" alt="Varsity Crewneck Sweater">
+                <h3>Varsity Knit Crewneck</h3>
+                <div class="price">$129.00</div>
+                <button class="buy-btn" onclick="addToBag()">Add To Bag</button>
             </div>
-        </div>
 
-        <!-- Card 3: Forest -->
-        <div class="card">
-            <img src="https://picsum.photos/id/116/500/350" alt="Deep green forest trail">
-            <div class="card-content">
-                <h3>The Woods</h3>
-                <p>Get lost in the silence of ancient forests and reconnect with Mother Nature.</p>
+            <!-- Product 3 -->
+            <div class="product-card">
+                <img src="https://picsum.photos/id/338/600/800" alt="Chino Jacket">
+                <h3>Classic Denim Jacket</h3>
+                <div class="price">$149.50</div>
+                <button class="buy-btn" onclick="addToBag()">Add To Bag</button>
             </div>
         </div>
     </main>
 
+    <!-- BRAND FOOTER -->
     <footer>
-        <p>© 2026 TravelJournal. Made with HTML, CSS, and JS.</p>
+        <p>© 2026 TOMMY HILFIGER CONCEPT EXPERIMENT. ALL RIGHTS RESERVED.</p>
     </footer>
 
-    <!-- JAVASCRIPT INTERACTIVITY -->
+    <!-- INTERACTIVE CART FUNCTIONALITY -->
     <script>
-        const toggleBtn = document.getElementById('themeToggle');
-        
-        toggleBtn.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            
-            if (currentTheme === 'dark') {
-                document.documentElement.removeAttribute('data-theme');
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            }
-        });
+        let count = 0;
+        function addToBag() {
+            count++;
+            document.getElementById('cart-count').innerText = count;
+            alert('Item added to your shopping bag!');
+        }
     </script>
 </body>
 </html>
